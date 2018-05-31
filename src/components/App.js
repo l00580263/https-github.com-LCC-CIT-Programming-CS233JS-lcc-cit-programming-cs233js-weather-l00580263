@@ -22,6 +22,7 @@ class App extends Component
     this.apikey = "&units=imperial&appid=c59493e7a8643f49446baf0d5ed9d646";
 
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onDayClick = this.onDayClick.bind(this);
   }
 
 
@@ -30,8 +31,8 @@ class App extends Component
     return (
       <div className="App">
         <ZipForm submitZip={this.onFormSubmit}/>
-        <WeatherList days={this.state.dates}/>
-        <CurrentDay city={this.state.city} day={null}/>
+        <WeatherList days={this.state.dates} onDayClick={this.onDayClick}/>
+        {this.state.selectedDate != null && <CurrentDay city={this.state.city} day={this.state.dates[this.state.selectedDate]}/>}
       </div>
     );
   }

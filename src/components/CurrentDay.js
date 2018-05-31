@@ -6,7 +6,7 @@ class CurrentDay extends Component
     {
         let cardinal;
         let magic = deg / 45;
-        const directions = ["North", "North-East", "East", "South-East", "South", "South-West", "West", "North-West"];
+        const directions = ["North", "North-East", "East", "South-East", "South", "South-West", "West", "North-West", "North"];
         magic = Math.round(magic);
         return directions[magic];
     }
@@ -23,8 +23,8 @@ class CurrentDay extends Component
 
     render()
     {
-        const today = new Date(this.props.dates[this.props.selectedDate].dt * 1000);
-        const todayWeather = this.props.dates[this.props.selectedDate];
+        const today = new Date(this.props.day.dt * 1000);
+        const todayWeather = this.props.day;
         const dayOfWeek = this.getDayOfWeek(today.getDay());
         const city = this.props.city.name;
         const description = todayWeather.weather[0].description;
@@ -36,7 +36,7 @@ class CurrentDay extends Component
         const humid = todayWeather.humidity;
         const wind = todayWeather.speed;
         const windDir = todayWeather.deg;
-        let windCardinal = this.degToCardinal(windDir);
+        const windCardinal = this.degToCardinal(windDir);
 
 
 
@@ -46,7 +46,7 @@ class CurrentDay extends Component
                 <div className='weather'>
                 <p>
                     <img src={`http://openweathermap.org/img/w/${icon}.png`} alt={description} />
-                    ${description}
+                    {description}
                 </p>
                 </div>
                 <div className="details flex-parent">
